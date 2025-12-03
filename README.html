@@ -33,13 +33,18 @@
 html, body{
   height:100%;
   margin:0;
-  background:var(--bg);
   font-family: "Vazir", "Tahoma", "Helvetica", sans-serif;
   color:var(--text);
-  -webkit-font-smoothing:antialiased;
   display: flex;
   justify-content: center;
   align-items: center;
+  /* پس‌زمینه سبز با الگوی قطره/حباب نرم */
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px),
+    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
 }
 
 .container {
@@ -59,10 +64,10 @@ html, body{
   margin:0 0 8px 0;
 }
 .title h1{
-  font-size:28px;       /* بزرگ‌تر */
+  font-size:28px;
   margin:0;
   font-weight:700;
-  color: var(--btn);    /* سبز رنگ */
+  color: var(--btn);
 }
 .drop-icon{
   width:34px;
