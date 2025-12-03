@@ -5,13 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Serum Calculator</title>
 
-<!-- آیکون قطره برای تب/هوم اسکرین (سعی شده سازگار باشه) -->
+<!-- آیکون قطره برای تب/هوم اسکرین -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
   <path fill='%2308a66c' d='M32 4C22 18 14 28 14 38a18 18 0 1 0 36 0C50 28 42 18 32 4z'/>
 </svg>">
 
-<!-- برای iOS: (iOS معمولاً PNG نیاز داره اما بعضی مرورگرها SVG را می‌پذیرند) -->
 <link rel="apple-touch-icon" href="data:image/svg+xml;utf8,
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'>
   <path fill='%2308a66c' d='M32 4C22 18 14 28 14 38a18 18 0 1 0 36 0C50 28 42 18 32 4z'/>
@@ -21,15 +20,14 @@
 
 <style>
   :root{
-    --bg: #dff7e9;        /* سبز پاستیلی */
+    --bg: #dff7e9;
     --white: #ffffff;
     --text: #234633;
     --muted: #5f7b6e;
-    --btn: #2f9a5f;       /* دکمه سبز پررنگ */
+    --btn: #2f9a5f;
     --btn-hover: #267a4d;
-    --result-bg: #e6f9ed; /* کادر نتیجه سبز خیلی کمرنگ */
+    --result-bg: #e6f9ed;
     --card-radius: 16px;
-    --gap: 12px;
   }
 
   html,body{
@@ -41,17 +39,15 @@
     -webkit-font-smoothing:antialiased;
   }
 
-  /* کانتینر سفید با فاصله 3mm از هر طرف */
   .container {
     background:var(--white);
-    margin: 20px 3mm;          /* فاصله حدود 3 میلی‌متر از راست و چپ */
+    margin: 20px 3mm;
     padding: 26px;
     border-radius: var(--card-radius);
     box-shadow: 0 10px 30px rgba(35,70,50,0.06);
     max-width: 880px;
   }
 
-  /* عنوان با آیکون قطره */
   .title {
     display:flex;
     align-items:center;
@@ -70,13 +66,6 @@
     flex-shrink:0;
   }
   .drop-icon svg{ width:100%; height:100%; display:block; fill:var(--btn); }
-
-  .subtitle{
-    text-align:center;
-    color:var(--muted);
-    font-size:13px;
-    margin-top:6px;
-  }
 
   label{
     display:block;
@@ -97,9 +86,6 @@
     color:var(--text);
   }
 
-  .row { display:flex; gap:10px; align-items:center; }
-
-  /* دکمه پررنگ‌تر و خوشگل‌تر */
   .btn {
     width:100%;
     margin-top:20px;
@@ -116,7 +102,6 @@
   }
   .btn:active{ transform: translateY(1px); box-shadow: 0 6px 15px rgba(47,154,95,0.15); }
 
-  /* کادر نتیجه سبز خیلی کمرنگ */
   #result {
     display:none;
     margin-top:18px;
@@ -130,9 +115,6 @@
     word-break:break-word;
   }
 
-  .note { font-size:13px; color:var(--muted); margin-top:10px; }
-
-  /* واکنش‌گرایی */
   @media (max-width:520px){
     .container{ padding:18px; }
     .title h1{ font-size:18px; }
@@ -141,37 +123,33 @@
 </head>
 <body>
   <main class="container" role="main" aria-label="Serum Calculator">
-    <div class="title" aria-hidden="false">
-      <div class="drop-icon" title="آیکون قطره">
-        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="title">
+      <div class="drop-icon">
+        <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
           <path d="M32 4C22 18 14 28 14 38a18 18 0 1 0 36 0C50 28 42 18 32 4z"/>
         </svg>
       </div>
-      <h1>سروم کالکولاتور</h1>
+      <h1>Serum Calculator</h1>
     </div>
-    <p class="subtitle">مقادیر را وارد کنید — صفر درصد هم پشتیبانی می‌شود (برای سالین معمولی)</p>
 
     <label for="diluted">درصد محلول رقیق</label>
-    <input id="diluted" inputmode="decimal" type="text" placeholder="مثال: 0 یا 0.9 یا 5">
+    <input id="diluted" inputmode="decimal" type="text">
 
     <label for="concentrated">درصد محلول غلیظ</label>
-    <input id="concentrated" inputmode="decimal" type="text" placeholder="مثال: 20 یا 50">
+    <input id="concentrated" inputmode="decimal" type="text">
 
     <label for="target">درصد نهایی هدف</label>
-    <input id="target" inputmode="decimal" type="text" placeholder="مثال: 10">
+    <input id="target" inputmode="decimal" type="text">
 
     <label for="volume">حجم نهایی هدف (سی‌سی)</label>
-    <input id="volume" inputmode="decimal" type="text" placeholder="مثال: 100">
+    <input id="volume" inputmode="decimal" type="text">
 
-    <button class="btn" id="calcBtn" aria-label="محاسبه">محاسبه کن</button>
+    <button class="btn" id="calcBtn">محاسبه کن</button>
 
-    <div id="result" role="status" aria-live="polite"></div>
-
-    <p class="note">نکته: می‌توانی با کیبورد فارسی یا انگلیسی بنویسی — سیستم اعداد فارسی را هم تبدیل می‌کند.</p>
+    <div id="result"></div>
   </main>
 
 <script>
-/* تبدیل ارقام فارسی/عربی به انگلیسی */
 function persianToEnglishDigits(str){
   if(typeof str !== 'string') str = String(str);
   const persian = ['\u06F0','\u06F1','\u06F2','\u06F3','\u06F4','\u06F5','\u06F6','\u06F7','\u06F8','\u06F9'];
@@ -204,12 +182,11 @@ document.getElementById('calcBtn').addEventListener('click', function(){
   r.style.display = 'none';
   r.innerHTML = '';
 
-  let d = readNumber('diluted');      // درصد محلول رقیق
-  let c = readNumber('concentrated'); // درصد محلول غلیظ
-  let t = readNumber('target');       // درصد هدف
-  let v = readNumber('volume');       // حجم نهایی (cc)
+  let d = readNumber('diluted');
+  let c = readNumber('concentrated');
+  let t = readNumber('target');
+  let v = readNumber('volume');
 
-  // اعتبارسنجی اولیه
   if(isNaN(d) || isNaN(c) || isNaN(t) || isNaN(v)){
     showError("لطفاً همه فیلدها را با اعداد معتبر پر کنید.");
     return;
@@ -219,7 +196,6 @@ document.getElementById('calcBtn').addEventListener('click', function(){
     return;
   }
 
-  // اگر c == d
   if(Math.abs(c - d) < 1e-12){
     if(Math.abs(t - d) < 1e-12){
       r.style.display = 'block';
@@ -231,16 +207,14 @@ document.getElementById('calcBtn').addEventListener('click', function(){
     }
   }
 
-  // فرمول: x = v*(t - d)/(c - d)
-  const x = (v * (t - d)) / (c - d); // حجم از محلول غلیظ
-  const y = v - x;                    // حجم از محلول رقیق
+  const x = (v * (t - d)) / (c - d);
+  const y = v - x;
 
   if(!isFinite(x) || !isFinite(y)){
     showError("ورودی‌ها منجر به نتیجه نامعتبر شدند.");
     return;
   }
 
-  // بررسی مقادیر منفی (غیر عملی)
   if(x < -1e-8 || y < -1e-8){
     const minP = Math.min(c,d);
     const maxP = Math.max(c,d);
@@ -248,7 +222,6 @@ document.getElementById('calcBtn').addEventListener('click', function(){
     return;
   }
 
-  // نمایش با قالب زیبا
   const xDisp = Math.abs(x) < 1e-9 ? 0 : x;
   const yDisp = Math.abs(y) < 1e-9 ? 0 : y;
 
